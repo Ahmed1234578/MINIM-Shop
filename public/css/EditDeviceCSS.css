@@ -43,7 +43,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 15%;
     margin-bottom: 2%;
-    
 }
 #PH {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,7 +60,7 @@
     height: 14%;
     width: 60%;
     margin-left: 15%;
-    
+    cursor: not-allowed;
 }
 #PI {
     height: 14%;
@@ -169,7 +168,7 @@ img {
     width: 50%;
     margin-top: 30%;
     margin-left: 25%;
-    cursor: pointer;
+   border-radius: 50%;
 }
 
 #logo {
