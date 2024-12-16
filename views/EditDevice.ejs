@@ -6,7 +6,7 @@
         <script src="/javascript/EditDeviceJS.js"></script>
     </head>
     <body>
-        <form method="post">
+        <form method="put"  action="/views/EditDevice.ejs.ejs/<%=arr._id%>?_method=PUT"  enctype="multipart/form-data">
         <div class="gen">
 <div class="left">
 <img src="/images/logo.jpg" alt="Shop logo">
@@ -19,19 +19,24 @@
         <div class="gen2">
         <div class="p1">
         <h2 id="NH">Name</h2>
-        <input type="text" name="Name" id= "NI" placeholder="Lenovo IdeaPad" required disabled>
+        <input type="text" name="Name" id= "NI" value="<%= arr.Name %>" required disabled>
         <h2 id="PH">Price (in EGP)</h2>
-        <input type="text" name="Price" id= "PI" placeholder="15,000" required>
-        <h2 id="HDDH">HDD (in TB)</h2>
-        <input type="text" name="HDD" id= "HDDI" placeholder="1" required>
+        <input type="number" name="Price" id= "PI" placeholder="15000" value="<%= arr.Price %>" required step="0.01">
+        <p id="PV"></p>
+        <h2 id="HDDH">Description</h2>
+        <input type="text" name="Description" id= "HDDI" placeholder="Write your device description" value="<%= arr.Description %>" required>
+        <p id="HV"></p>
         </div>
         <div class="p2">
         <h2 id="RAMH">RAM (in GB)</h2>
-        <input type="text" name="RAM" id= "RAMI" placeholder="8" required>
+        <input type="number" name="RAM" id= "RAMI" placeholder="8" value="<%= arr.RAM %>" required>
+        <p id="RV"></p>
         <h2 id="SPH">Screen space (in Inch)</h2>
-        <input type="text" name="ScreenSpace" id= "SPI" placeholder="15.6" required>
+        <input type="number" name="ScreenSpace" id= "SPI" placeholder="15.6" value="<%= arr.ScreenSpace %>" required step="0.01">
+        <p id="SPV"></p>
         <h2 id="PhH">Photo</h2>
-        <input type="file" name="Photo" id= "PhI" placeholder="Al-Ahly Street, Cairo" required>
+        <input type="file" name="Photo" id= "PhI" value="<%= arr.contentType%>" required>
+        <p id="PHV"></p>
         </div>
         </div>
         <div class="BD">
