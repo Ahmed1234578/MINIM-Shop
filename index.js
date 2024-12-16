@@ -189,6 +189,14 @@ app.post('/', (req, res) => {
   
   })
  })
+ app.get('/views/ManageDevices.ejs', async(req, res) => {
+     
+  Device.find().then((result) => {
+
+ res.render('ManageDevices', {arr: result})
+
+})
+})
  app.get('/views/ViewUser.ejs/:id', (req, res) => {
   User.findById(req.params.id).then((result) => {
     res.render('ViewUser', {arr: result})
@@ -207,6 +215,15 @@ app.post('/', (req, res) => {
   })
  
  })
+ app.get('/views/EditDevice.ejs/:id', (req, res) => {
+  Device.findById(req.params.id).then((result) => {
+    res.render('EditDevice', {arr: result})
+   
+  }).catch((err) => {
+    console.log(err);
+  })
+ 
+ })
  app.get('/views/EditUser.ejs/:id', (req, res) => {
   User.findById(req.params.id).then((result) => {
     res.render('EditUser', {arr: result})
@@ -216,15 +233,34 @@ app.post('/', (req, res) => {
   })
  
  })
- app.put('/views/EditUser.ejs/:id', (req, res) => {
-  User.findByIdAndUpdate(req.params.id, req.body ).then((result) => {
-    res.redirect("/views/Users.ejs")
-  
+ app.put('/views/EditUser.ejs/:id', upload.single('Photo'), (req, res) => {
+  const updatedData = {
+    FullName:req.body.FullName,
+    Email: req.body.Email,
+    Address:req.body.Address,
+    Password:req.body.Password,
+    ScreenSpace:req.body.ScreenSpace,
+    Photo: {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    },
+  };
+
+  if (req.file) {
+    updatedData.Photo = {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    };
+  }
+
+  User.findByIdAndUpdate(req.params.id, updatedData, { new: true }).then((result) => {
+    res.redirect("/views/Users.ejs");
   }).catch((err) => {
     console.log(err);
-  })
- 
- })
+    res.status(500).send('Error updating user profile.');
+  });
+});
+
  app.post('/views/EditProfileUser.ejs/:id', (req, res) => {
   User.findById(req.params.id).then((result) => {
     res.render('UserPage', {arr: result})
@@ -243,7 +279,15 @@ app.post('/', (req, res) => {
   })
  
  })
-
+ app.delete('/views/ManageDevices.ejs/:id', (req, res) => {
+  Device.findByIdAndDelete(req.params.id).then(() => {
+    res.redirect('/views/ManageDevices.ejs')
+   
+  }).catch((err) => {
+    console.log(err);
+  })
+ 
+ })
  app.get('/device-images/:id', async (req, res) => {
   try {
     const device = await Device.findById(req.params.id);
