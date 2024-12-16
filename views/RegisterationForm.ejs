@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Registeration</title>
+        <link rel="stylesheet" href="/css/RegisterationCSS.css">
+        <script src="/javascript/RegisterationJS.js"></script>
+    </head>
+    <body>
+        <form onsubmit="return RegisterFun()" method="post" action="/views/UserPage.ejs" enctype="multipart/form-data">
+        <div class="gen">
+<div class="left">
+<img src="/images/logo.jpg" alt="Shop logo">
+<h1 id="logo">MINIM</h1>
+<p>Electronic Devices</p>
+<br>
+<label id="RL"><spam id="NU">Have an account? </spam><a href="/views/LoginForm.ejs">Login</a></label>
+</div>
+
+    <div class="right">
+        <h1 id="re">Registeration</h1>
+        <div class="gen2">
+        <div class="p1">
+        <h2 id="FNH" name="FullName">Full Name</h2>
+        <input type="text" name="FullName" id= "FNI" placeholder="Ahmed Mohamed" required>
+        <p id="FNV"></p>
+        <h2 id="EmH">Email</h2>
+        <input type="email" name="Email" id= "EmI" placeholder="ahmed@gmail.com" required>
+        <p id="EV"></p>
+        <h2 id="PH">Password</h2>
+        <input type="password" name="Password" id= "PI" placeholder="Enter your Password" required>
+        <p id="PV"></p>
+        
+        </div>
+        <div class="p2">
+        <h2 id="PH">Confirm Password</h2>
+        <input type="password" name="ConfirmPassword" id= "CPI" placeholder="Confirm your Password" required>
+        <p id="CPV"></p>
+        
+        <h2 id="AH">Address</h2>
+        <input type="text" name="Address" id= "AI" placeholder="Al-Ahly Street, Cairo" required>
+        <p id="AV"></p>
+        <h2 id="PhH">Photo</h2>
+        <input type="file" name="Photo" id= "PhI" placeholder="Al-Ahly Street, Cairo" required>
+        <p id="PHV"></p>
+        </div>
+        
+        </div>
+        
+        <div class="BD">
+        <button type="submit"  onclick="RegisterFun()" class="RB">Register</button>
+        <button type="button" onclick="CanFun()" class="CB" name="CancelB" >Cancel</button>
+        </div>
+    </div>
+        </div>
+        </form>
+    </body>
+</html>

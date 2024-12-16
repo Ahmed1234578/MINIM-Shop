@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="/css/UsersCSS.css">
+    <script src="/javascript/UsersJS.js"></script>
+</head>
+<body>
+   
+    <div class="gen">
+        <div class="left">
+            <img src="/images/logo.jpg" alt="Shop logo" id="im">
+            <h1 id="logo">MINIM</h1>
+            <p id="logo2">Electronic Devices</p>
+        </div>
+
+        <div class="right">
+            <h1 id="re">Manage Users</h1>
+            
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                
+                
+                        <tbody >
+                        <% arr.forEach(element => { %>
+                           
+                         <tr  >
+                           
+                            <td><%= element.FullName %></td>
+                          <td><%= element.Email %></td>
+                            <td><%= element.Address %></td>
+                             <td>
+                                <button type="button" class="action" onclick="location.href='/views/ViewUser.ejs/<%= element._id %>';">View</button>
+                                <button type="button" class="action" onclick="location.href='/views/EditUser.ejs/<%= element._id %>';">Edit</button>
+                                <form action="/views/Users.ejs/<%=element._id%>?_method=DELETE" method="post" style="display: inline;">
+                                <button type="submit" class="action">Delete</button>
+                                </form>
+                            </td> 
+                            </tr>
+                            
+                        <% }) %>
+                   
+                    
+                
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+</body>
+</html>
