@@ -36,8 +36,8 @@
         
     </div>
     <script>
-         let totalPrice = 0;  // Global total price
-const productData = []; // Array to hold product data
+         let totalPrice = 0;  
+const productData = []; 
 
 document.querySelectorAll('.product').forEach((div, index) => {
     const button = div.querySelector('.add-button');
@@ -45,15 +45,13 @@ document.querySelectorAll('.product').forEach((div, index) => {
     const removeLink = div.querySelector('.remove');
     const priceElement = div.querySelector('.price');
     const nameElement = div.querySelector('#pro-name');
-    const quantityElement = div.querySelector('.quantity');
     const productId = div.getAttribute('data-id');
-    const price = parseFloat(priceElement.textContent);  // Extract price as a float
-    const name = nameElement.textContent;  // Extract product name
-    const maxQuantity = parseInt(quantityElement.textContent.split(": ")[1]);  // Extract max quantity
+    const price = parseFloat(priceElement.textContent);  
+    const name = nameElement.textContent;  
+   
     let count = 0;
 
     button.addEventListener('click', () => {
-        if (count < maxQuantity) {
             count++;
             
             totalPrice += price;
@@ -61,16 +59,14 @@ document.querySelectorAll('.product').forEach((div, index) => {
             paragraph.style.display = 'inline';  
             removeLink.style.display = 'inline';  
 
-            // Update product data
+            
             productData[index] = {
                 name: name,
                 price: price,
                 count: count,
                 totalPrice: count * price
             };
-        } else {
-            alert(`Cannot add more than ${maxQuantity} items of ${name} to the cart`);
-        }
+        
     });
 
     removeLink.addEventListener('click', (event) => {
@@ -81,7 +77,7 @@ document.querySelectorAll('.product').forEach((div, index) => {
         paragraph.style.display = 'none';  
         removeLink.style.display = 'none';  
 
-        // Update product data
+       
         productData[index] = {
             name: name,
             price: price,
@@ -92,11 +88,11 @@ document.querySelectorAll('.product').forEach((div, index) => {
 });
 
 document.getElementById('BuyB').addEventListener('click', () => {
-    // Store product data in localStorage
+  
     localStorage.setItem('productData', JSON.stringify(productData));
     localStorage.setItem('totalPrice', totalPrice);
 
-    // Navigate to the summary page
+
     if(totalPrice==0){
         alert("Your cart is empty!")
     }
